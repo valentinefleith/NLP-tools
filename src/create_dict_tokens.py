@@ -23,6 +23,7 @@ def create_dict(file):
         else:
             tokens[element] = 1
     # tokens = sorted(tokens.items(), key=lambda x: x[1])
+    # return sort_dict(tokens)
     return remove_empty_words(tokens)
 
 
@@ -32,7 +33,7 @@ def remove_empty_words(tokens):
         stop_words = empty_words.read()
         new_dict = {}
         for key in tokens:
-            if (key) not in stop_words:
+            if key not in stop_words:
                 new_dict[key] = tokens[key]
     return sort_dict(new_dict)
 
