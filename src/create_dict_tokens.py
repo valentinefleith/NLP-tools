@@ -11,6 +11,8 @@ def main():
     args = parser.parse_args()
     file = args.filename
     tokens = create_dict(file)
+    tokens = remove_empty_words(tokens)
+    tokens = sort_dict(tokens)
     print(tokens)
 
 
@@ -24,7 +26,7 @@ def create_dict(file):
             tokens[element] = 1
     # tokens = sorted(tokens.items(), key=lambda x: x[1])
     # return sort_dict(tokens)
-    return remove_empty_words(tokens)
+    return tokens
 
 
 def remove_empty_words(tokens):
@@ -35,7 +37,7 @@ def remove_empty_words(tokens):
         for key in tokens:
             if key not in stop_words:
                 new_dict[key] = tokens[key]
-    return sort_dict(new_dict)
+    return new_dict
 
 
 def sort_dict(tokens):

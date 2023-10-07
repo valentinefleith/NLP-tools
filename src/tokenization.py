@@ -1,3 +1,4 @@
+"""
 import argparse
 
 
@@ -8,6 +9,7 @@ def main():
     parser.add_argument('filename')
     args = parser.parse_args()
     print(tokenize(args.filename))
+"""
 
 
 def tokenize(file):
@@ -45,5 +47,7 @@ def split_apostrophes(text):
     return apostrophes
 
 
+"""
 if __name__ == "__main__":
     main()
+"""
