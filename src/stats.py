@@ -1,6 +1,6 @@
 import argparse
 
-from create_dict_tokens import create_dict
+import create_dict_tokens
 
 
 def main():
@@ -8,10 +8,15 @@ def main():
                     prog="py tokenization.py",
                     description='Tokenize a text file.')
     parser.add_argument('filename')
+    parser.add_argument('top_x_words', nargs="?")
     args = parser.parse_args()
-    tokens = create_dict(args.filename)
+    tokens = create_dict_tokens.create_dict(args.filename)
+    tokens = create_dict_tokens.sort_dict(create_dict_tokens.remove_empty_words(tokens))
     frequencies = find_relative_frequency(tokens)
-    print(frequencies)
+    if args.top_x_words:
+        print_x_first_frequencies(frequencies, int(args.top_x_words))
+    else:
+        print(frequencies)
 
 
 def find_relative_frequency(tokens):
@@ -22,6 +27,14 @@ def find_relative_frequency(tokens):
         frequencies[key] = frequency
         #print(f"Frequence du mot {key} : {frequency}%")
     return frequencies
+
+def print_x_first_frequencies(frequencies, number):
+    counter = 1
+    while counter <= number:
+        i = -counter
+        key = list(frequencies)[i]
+        print(f"{counter}) Frequence du mot {key} : {frequencies[key]}")
+        counter += 1
 
 
 
