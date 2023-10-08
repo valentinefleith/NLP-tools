@@ -18,7 +18,7 @@ au
 aucun
 aucune
 aujourd
-aujourd'hui
+aujourd’hui
 auquel
 aura
 auront
@@ -343,6 +343,7 @@ quelle
 quelles
 quelque
 quelques
+quelqu’
 quelqu’un
 quels
 qui

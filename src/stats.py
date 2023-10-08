@@ -1,4 +1,4 @@
-import argparse
+import sys
 
 import create_dict_tokens
 
@@ -11,17 +11,14 @@ def main():
     Argument 2 (optional) : number of words to print.
         example 10 will print the 10 most common words and their frequency
     """
-    parser = argparse.ArgumentParser(
-                    prog="py tokenization.py",
-                    description='Tokenize a text file.')
-    parser.add_argument('filename')
-    parser.add_argument('top_x_words', nargs="?")
-    args = parser.parse_args()
-    tokens = create_dict_tokens.create_dict(args.filename)
+    if not 2 <= len(sys.argv) <= 3:
+        sys.exit("Usage : py stats.py /path/to/file.txt (optional integer)")
+
+    tokens = create_dict_tokens.create_dict(sys.argv[1])
     tokens = create_dict_tokens.sort_dict(create_dict_tokens.remove_empty_words(tokens))
     frequencies = find_relative_frequency(tokens)
-    if args.top_x_words.isdigit():
-        print_x_first_frequencies(frequencies, int(args.top_x_words))
+    if len(sys.argv) == 3 and sys.argv[2].isdigit():
+        print_x_first_frequencies(frequencies, int(sys.argv[2]))
     else:
         print(frequencies)
 

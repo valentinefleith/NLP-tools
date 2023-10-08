@@ -1,14 +1,11 @@
 """
-import argparse
+import sys
 
 
 def main():
-    parser = argparse.ArgumentParser(
-                    prog="py tokenization.py",
-                    description='Tokenize a text file.')
-    parser.add_argument('filename')
-    args = parser.parse_args()
-    print(tokenize(args.filename))
+    if len(sys.argv) != 2:
+        sys.exit("Usage : py tokenization.py /path/to/file.txt")
+    print(tokenize(sys.argv[1]))
 """
 
 

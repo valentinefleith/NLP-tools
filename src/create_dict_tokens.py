@@ -1,15 +1,12 @@
-import argparse
+import sys
 
 from tokenization import tokenize
 
 
 def main():
-    parser = argparse.ArgumentParser(
-                    prog="py tokenization.py",
-                    description='Tokenize a text file.')
-    parser.add_argument('filename')
-    args = parser.parse_args()
-    file = args.filename
+    if len(sys.argv) != 2:
+        sys.exit("Usage : py create_dict_tokens.py /path/to/file.txt")
+    file = sys.argv[1]
     tokens = create_dict(file)
     tokens = remove_empty_words(tokens)
     tokens = sort_dict(tokens)
