@@ -11,19 +11,18 @@ def main():
 
 def tokenize(file):
     with open(file, "r") as text:
-        words = clean_text(text).split()
+        words = clean_text(text.read()).split()
     words += split_apostrophes(words)
     return words
 
 
 def clean_text(text):
     cleaned = ""
-    for line in text:
-        for char in line:
-            if char == '\n':
-                cleaned += ' '
-            if char not in "?!():;.,«»–¬—*":
-                cleaned += char.lower()
+    for char in text:
+        if char == '\n':
+            cleaned += ' '
+        if char not in "?!():;.,«»–¬—*":
+            cleaned += char.lower()
     return cleaned
 
 

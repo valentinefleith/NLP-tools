@@ -30,18 +30,13 @@ def remove_empty_words(tokens):
     path = "/home/val/M1_TAL/Semestre_1/Programmation_algorithmique/exos_cours3/devoirs/tokenisation/aux/stop_words.txt"
     with open(path, "r") as empty_words:
         stop_words = empty_words.read()
-        new_dict = {}
-        for key in tokens:
-            if key not in stop_words:
-                new_dict[key] = tokens[key]
+        new_dict = {key: tokens[key] for key in tokens if key not in stop_words}
     return new_dict
 
 
 def sort_dict(tokens):
-    sorted_dict = {}
     sorted_keys = sorted(tokens, key=tokens.get)
-    for key in sorted_keys:
-        sorted_dict[key] = tokens[key]
+    sorted_dict = {key: tokens[key] for key in sorted_keys}
     return sorted_dict
 
 
