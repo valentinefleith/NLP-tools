@@ -22,7 +22,6 @@ def create_dict(file):
         else:
             tokens[element] = 1
     # tokens = sorted(tokens.items(), key=lambda x: x[1])
-    # return sort_dict(tokens)
     return tokens
 
 
