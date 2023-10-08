@@ -8,10 +8,13 @@ def main():
     print(tokenize(sys.argv[1]))
 """
 
+from lemmatization import lemmatize
+
 
 def tokenize(file):
     with open(file, "r") as text:
-        words = clean_text(text.read()).split()
+        lemmas = lemmatize(text.read())
+        words = clean_text(lemmas).split()
     words += split_apostrophes(words)
     return words
 

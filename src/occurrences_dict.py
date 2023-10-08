@@ -1,6 +1,6 @@
 import sys
 
-from tokenization import tokenize
+from tokenization import tokenize, lemmatize
 
 
 def main():
@@ -8,7 +8,7 @@ def main():
         sys.exit("Usage : py create_dict_tokens.py /path/to/file.txt")
     file = sys.argv[1]
     tokens = create_dict(file)
-    tokens = remove_empty_words(tokens)
+    #tokens = remove_empty_words(tokens)
     tokens = sort_dict(tokens)
     print(tokens)
 
