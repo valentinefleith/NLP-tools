@@ -19,8 +19,8 @@ def tokenize(file):
 def clean_text(text):
     cleaned = ""
     for char in text:
-        if char == '\n':
-            cleaned += ' '
+        if char == "\n":
+            cleaned += " "
         if char not in "?!():;.,«»–¬—*":
             cleaned += char.lower()
     return cleaned

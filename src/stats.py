@@ -1,6 +1,6 @@
 import sys
 
-import create_dict_tokens
+import occurrences_dict
 
 
 def main():
@@ -14,8 +14,8 @@ def main():
     if not 2 <= len(sys.argv) <= 3:
         sys.exit("Usage : py stats.py /path/to/file.txt (optional integer)")
 
-    tokens = create_dict_tokens.create_dict(sys.argv[1])
-    tokens = create_dict_tokens.sort_dict(create_dict_tokens.remove_empty_words(tokens))
+    tokens = occurrences_dict.create_dict(sys.argv[1])
+    tokens = occurrences_dict.sort_dict(occurrences_dict.remove_empty_words(tokens))
     frequencies = find_relative_frequency(tokens)
     if len(sys.argv) == 3 and sys.argv[2].isdigit():
         print_x_first_frequencies(frequencies, int(sys.argv[2]))
