@@ -2,21 +2,23 @@ import spacy
 
 
 class Text:
-    def __init__(self):
-        pass
-
-    def get_raw(self, path):
+    def __init__(self, path):
+        self.raw = Text.load_file(path)
+    
+    @staticmethod
+    def load_file(path):
         with open(path, "r") as text:
             return text.read()
 
-    def get_lemmatized(self, path):
-        raw_text = self.get_raw(path)
+    def get_lemmatized(self):
+        raw_text = self.raw
         load = spacy.load("fr_core_news_sm", disable=["parser", "ner"])
         doc = load(raw_text)
         lemmatized = ' '.join(token.lemma_ for token in doc)
         return lemmatized
 
-    def get_cleaned(self, lemmatized):
+    @staticmethod
+    def get_cleaned(lemmatized):
         cleaned = ""
         for char in lemmatized:
             if char == "\n":
