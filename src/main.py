@@ -1,4 +1,5 @@
-from Text import Text
+from text import Text
+from tokens import Tokens
 
 
 import sys
@@ -8,7 +9,8 @@ def main():
     if len(sys.argv) != 2:
         sys.exit("Usage : py main.py /path/to/file.txt")
     text = Text(sys.argv[1])
-    print(text.get_cleaned_lemmas())
+    tokens = Tokens(text)
+    print(tokens.tokens)
 
 
 if __name__ == "__main__":

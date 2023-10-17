@@ -1,12 +1,12 @@
-import Text
+from text import Text
 
 
 class Tokens:
     def __init__(self, text):
-        self.tokens = text.get_cleaned_lemmas().tokenize()
+        self.tokens = text.get_cleaned_lemmas().get_tokens()
 
-    def get_tokens(self, text):
-        tokens = text.split()
+    def get_tokens(self):
+        tokens = self.split()
         tokens += tokens.split_apostrophes()
         return tokens
 
