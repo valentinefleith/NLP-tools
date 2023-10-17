@@ -18,7 +18,7 @@ class Text:
             #if char == "\n":
                #cleaned += " "
             if char not in "?!():;.,«»–¬—*":
-                cleaned += char.lower()
+                cleaned += char
         return cleaned.replace("\n", " ").lower()
 
     @staticmethod
