@@ -15,8 +15,6 @@ class Text:
     def get_cleaned_lemmas(self):
         cleaned = ""
         for char in self.get_lemmas():
-            #if char == "\n":
-               #cleaned += " "
             if char not in "?!():;.,«»–¬—*":
                 cleaned += char
         return cleaned.replace("\n", " ").lower()
