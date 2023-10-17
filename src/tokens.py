@@ -5,9 +5,9 @@ class Tokens:
     def __init__(self, text):
         self.tokens = text.get_cleaned_lemmas().get_tokens()
 
-    def get_tokens(self):
-        tokens = self.split()
-        tokens += tokens.split_apostrophes()
+    def get_tokens(self, text):
+        tokens = text.split()
+        tokens += self.split_apostrophes(text)
         return tokens
 
     def split_apostrophes(self, text):
