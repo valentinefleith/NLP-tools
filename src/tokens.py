@@ -2,15 +2,15 @@ from text import Text
 
 
 class Tokens:
-    def __init__(self, text):
+    def __init__(self, text: Text):
         self.tokens = text.get_cleaned_lemmas().get_tokens()
 
-    def get_tokens(self, text):
+    def get_tokens(self, text: Text) -> list[str]:
         tokens = text.split()
         tokens += self.split_apostrophes(text)
         return tokens
 
-    def split_apostrophes(self, text):
+    def split_apostrophes(self, text: Text) -> list[str]:
         # apostrophe = "'"
         apostrophe = "’"
         apostrophes = []
