@@ -1,7 +1,8 @@
-import math
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+from scipy.stats import _covariance, linregress
 
 from occurrences_dict import create_dict, sort_dict
 
@@ -19,17 +20,31 @@ def main():
     tokens = sort_dict(create_dict(sys.argv[1]))
     ranked = rebuild_dictionary(rank_words(tokens))
     generate_curve(ranked)
+    #find_parameters(ranked)
 
 
 def generate_curve(tokens):
-    x = np.array([math.log(key) for key in tokens])
-    y = np.array([math.log(tokens[key]) for key in tokens])
-
-    plt.plot(x, y)
-    plt.title("Loi de Zipf")
-    plt.xlabel("Logarithme du rangs des mots")
-    plt.ylabel("Logarithme du nombre d'occurrences")
+    ranks = np.array([key for key in tokens])
+    frequencies = np.array([(tokens[key]) for key in tokens])
+    alpha = -find_alpha(ranks, frequencies)[0]
+    constant = np.exp(find_alpha(ranks, frequencies)[1])
+    plt.plot(ranks, frequencies, label='Donnees')
+    plt.plot(ranks, constant * ranks**alpha, label=f'Ajustement : α={alpha:.2f}\n C = {constant:.2f}')
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.title("Loi de Zipf et ajustement par loi de Puissance")
+    plt.xlabel("Rang des mots")
+    plt.ylabel("Nombre d'occurrences")
+    plt.legend()
     plt.show()
+
+
+def find_alpha(ranks, frequencies):
+    log_ranks = np.log(ranks)
+    log_freqs = np.log(frequencies)
+    slope, intercept, r_value, p_value, std_err = linregress(log_ranks, log_freqs)
+    alpha_estimated = -slope
+    return alpha_estimated, intercept
 
 
 def rank_words(dictionary):
