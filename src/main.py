@@ -10,7 +10,7 @@ def main():
         sys.exit("Usage : py main.py /path/to/file.txt")
     text = Text(sys.argv[1])
     tokens = Tokens(text)
-    print(tokens.lemmas)
+    print(tokens.occ_dict_without_stopwords)
 
 
 if __name__ == "__main__":
