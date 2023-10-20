@@ -1,5 +1,5 @@
-from text import Text
-from tokens import Tokens
+from Text import Text
+from Tokens import Tokens
 
 
 import sys
