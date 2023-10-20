@@ -1,27 +1,29 @@
-from text import Text
+from Text import Text
 
 
 class Tokens:
     def __init__(self, text: Text):
-        self.tokens = text.get_cleaned_lemmas().get_tokens()
+        self.tokens = Tokens.tokenize(text)
 
-    def get_tokens(self, text: Text) -> list[str]:
-        tokens = text.split()
-        tokens += self.split_apostrophes(text)
+    @staticmethod
+    def tokenize(text: Text) -> list[str]:
+        lemmas = text.get_lemmatized_and_cleaned().split()
+        tokens = Tokens.split_apostrophes(lemmas)
         return tokens
 
-    def split_apostrophes(self, text: Text) -> list[str]:
+    @staticmethod
+    def split_apostrophes(words: list[str]) -> list[str]:
         # apostrophe = "'"
         apostrophe = "’"
         apostrophes = []
         indices = []
-        for index, word in enumerate(text):
+        for index, word in enumerate(words):
             if apostrophe in word:
-                temp = word.split(apostrophe)
-                apostrophes.append(temp[0] + apostrophe)
-                apostrophes.append(temp[1])
+                first, second, *_ = word.split(apostrophe)
+                apostrophes.append(first + apostrophe)
+                apostrophes.append(second)
                 indices.append(index)
         indices.reverse()
         for i in indices:
-            text.pop(i)
-        return apostrophes
+            words.pop(i)
+        return words + apostrophes
