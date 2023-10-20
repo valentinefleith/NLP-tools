@@ -4,10 +4,11 @@ from Text import Text
 class Tokens:
     def __init__(self, text: Text):
         self.tokens = Tokens.tokenize(text)
+        self.lemmas = text.get_lemmatized_and_cleaned().split()
 
     @staticmethod
     def tokenize(text: Text) -> list[str]:
-        lemmas = text.get_lemmatized_and_cleaned().split()
+        lemmas = text.get_raw_cleaned().split()
         tokens = Tokens.split_apostrophes(lemmas)
         return tokens
 
