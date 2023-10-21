@@ -10,26 +10,8 @@ class Tokens:
 
     @staticmethod
     def tokenize(text: Text) -> list[str]:
-        lemmas = text.get_raw_cleaned().split()
-        tokens = Tokens.split_apostrophes(lemmas)
+        tokens = text.get_raw_cleaned().split()
         return tokens
-
-    @staticmethod
-    def split_apostrophes(words: list[str]) -> list[str]:
-        # apostrophe = "'"
-        apostrophe = "’"
-        apostrophes = []
-        indices = []
-        for index, word in enumerate(words):
-            if apostrophe in word:
-                first, second, *_ = word.split(apostrophe)
-                apostrophes.append(first + apostrophe)
-                apostrophes.append(second)
-                indices.append(index)
-        indices.reverse()
-        for i in indices:
-            words.pop(i)
-        return words + apostrophes
 
     def get_occ_dict(self):
         occurrences_dict = {}
@@ -49,6 +31,6 @@ class Tokens:
 
     @staticmethod
     def sort_dict(dictionary):
-        sorted_keys = sorted(dictionary, key=dictionary.get)
+        sorted_keys = sorted(dictionary, key=dictionary.get, reverse=True)
         sorted_dict = {key: dictionary[key] for key in sorted_keys}
         return sorted_dict

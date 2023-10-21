@@ -3,6 +3,7 @@ import spacy
 
 class Text:
     PUNCTUATION = "?!():;.,«»–¬—*"
+    APOSTROPHE = "’"
 
     def __init__(self, path: str):
         self.raw = Text.load_file(path)
@@ -25,8 +26,10 @@ class Text:
     def clean(cls, string: str) -> str:
         cleaned = ""
         for char in string:
-            if char not in Text.PUNCTUATION:
+            if char not in set(Text.PUNCTUATION + Text.APOSTROPHE):
                 cleaned += char
+            if char == Text.APOSTROPHE:
+                cleaned += char + " "
         return cleaned.replace("\n", " ").lower()
 
     @staticmethod
