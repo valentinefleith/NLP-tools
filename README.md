@@ -9,3 +9,4 @@
 
 - Attribute in Tokens for pos-tagging the corpus
 - N-grams generators
+- Bag of words
