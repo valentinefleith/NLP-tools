@@ -5,7 +5,7 @@ class Tokens:
     def __init__(self, text: Text):
         self.tokens = Tokens.tokenize(text)
         self.lemmas = text.get_lemmatized_and_cleaned().split()
-        self.occ_dict = self.get_occ_dict()
+        self.occ_dict = Tokens.create_occ_dict(self.tokens)
         self.occ_dict_without_stopwords = self.remove_empty_words()
 
     @staticmethod
@@ -13,9 +13,10 @@ class Tokens:
         tokens = text.get_raw_cleaned().split()
         return tokens
 
-    def get_occ_dict(self):
+    @staticmethod
+    def create_occ_dict(tokens):
         occurrences_dict = {}
-        for element in self.tokens:
+        for element in tokens:
             if element in occurrences_dict:
                 occurrences_dict[element] += 1
             else:
