@@ -1,9 +1,9 @@
-# My own NLP tools in Python
+# My tools for NLP in Python
 
 ## Modules
 
-- [`Text.py`](/src/Text.py)
-- [`Tokens.py`](/src/Tokens.py)
+- [`Text.py`](/src/Text.py) : load, clean, and lemmatize a text.
+- [`Tokens.py`](/src/Tokens.py) : tokenize, count words, remove empty words from a text.
 
 ## Todo
 
