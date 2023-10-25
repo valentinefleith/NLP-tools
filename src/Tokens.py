@@ -29,8 +29,13 @@ class Tokens:
     def get_occ_dict(self):
         return Tokens.create_occ_dict(self.tokens)
 
-    def get_occ_dict_without_stopwords(self):
-        return self.remove_empty_words()
+    def get_occ_dict_without_stopwords(self, path_to_stopwords="aux/stop_words.txt"):
+        """From a dict {word: occurences}, removes stop-words"""
+        with open(path_to_stopwords, "r") as empty_words:
+            stop_words = empty_words.read()
+            occ_dict = self.get_occ_dict()
+            new_dict = {key: occ_dict[key] for key in occ_dict if key not in stop_words}
+        return new_dict
 
     @staticmethod
     def create_occ_dict(tokens):
@@ -42,14 +47,6 @@ class Tokens:
             else:
                 occurrences_dict[element] = 1
         return Tokens.sort_dict(occurrences_dict)
-
-    def remove_empty_words(self):
-        """From a dict {word: occurences}, removes stop-words"""
-        path = "aux/stop_words.txt"
-        with open(path, "r") as empty_words:
-            stop_words = empty_words.read()
-            new_dict = {key: self.occ_dict[key] for key in self.occ_dict if key not in stop_words}
-        return new_dict
 
     @staticmethod
     def sort_dict(dictionary):
