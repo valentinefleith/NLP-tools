@@ -19,14 +19,18 @@ class Tokens:
     def __init__(self, text: Text):
         self.tokens = Tokens.tokenize(text)
         self.lemmas = text.get_lemmatized_and_cleaned().split()
-        self.occ_dict = Tokens.create_occ_dict(self.tokens)
-        self.occ_dict_without_stopwords = self.remove_empty_words()
 
     @staticmethod
     def tokenize(text: Text) -> list[str]:
         """Takes in a text, returns a list of all its words."""
         tokens = text.get_raw_cleaned().split()
         return tokens
+
+    def get_occ_dict(self):
+        return Tokens.create_occ_dict(self.tokens)
+
+    def get_occ_dict_without_stopwords(self):
+        return self.remove_empty_words()
 
     @staticmethod
     def create_occ_dict(tokens):
