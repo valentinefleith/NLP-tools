@@ -23,6 +23,6 @@ python3 -m spacy download ft_core_news_sm
 
 ## Todo
 
-- Attribute in Tokens for pos-tagging the corpus
+- Create token class so that tokens are list of token (attributes : pos, lemmas, etc.)
 - N-grams generators
 - Bag of words
