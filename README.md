@@ -14,7 +14,7 @@ python3 -m spacy download ft_core_news_sm
 ### Classes
 
 - [`Text.py`](/src/Text.py) : load, clean, and lemmatize a text.
-- [`Tokens.py`](/src/Tokens.py) : tokenize, count words, remove empty words from a text.
+- [`Tokens.py`](/src/Tokens.py) : tokenize, count words, remove empty words, get n-grams from a text.
 
 ### Files
 
@@ -24,5 +24,5 @@ python3 -m spacy download ft_core_news_sm
 ## Todo
 
 - Create token class so that tokens are list of token (attributes : pos, lemmas, etc.)
-- N-grams generators
 - Bag of words
+- Freq ranked dict

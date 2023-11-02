@@ -39,6 +39,14 @@ class Tokens:
             new_dict = {key: occ_dict[key] for key in occ_dict if key not in stop_words}
         return new_dict
 
+    def get_ngrams(self, n: int) -> List[List[str]]:
+        tokens = self.tokens
+        ngrams = []
+        for i in range(len(tokens) - n + 1):
+            ngrams.append([tokens[i + j] for j in range(n)])
+        return ngrams
+
+
     @staticmethod
     def create_occ_dict(tokens: List[str]) -> Dict[str, int]:
         """Takes in a list of tokens, returns a dict {word: occurences}"""
