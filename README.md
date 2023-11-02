@@ -9,6 +9,8 @@ pip install spacy
 python3 -m spacy download ft_core_news_sm
 ```
 
+NB : only the lemmatization part will use `spacy`.
+
 ## Modules
 
 ### Classes
